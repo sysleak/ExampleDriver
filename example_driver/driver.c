@@ -53,6 +53,15 @@ VOID init_thread(  )
 	return;
 }
 
+/// <summary>
+/// Fast driver init function
+/// Used in case of two kdmapper's conditions:
+///		1. Set Custom Driver Entry Point
+///		2. Create a thread and return from driver entry fastest as you can to prevent unexpected calls
+/// </summary>
+/// <param name="drv_obj">Pointer to DRIVER_OBJECT structure</param>
+/// <param name="path">Pointer to UNICODE_STRING</param>
+/// <returns></returns>
 NTSTATUS main_entry( PDRIVER_OBJECT drv_obj, PUNICODE_STRING path )
 {
 	stored_orig_data.drv_obj = drv_obj;
